@@ -195,10 +195,10 @@ function draw(e) {
 	ctx.lineCap = "round";
 	ctx.strokeStyle = cursorColor;
 
-	ctx.lineTo(e.clientX, e.clientY - 180);
+	ctx.lineTo(e.clientX -8, e.clientY - 173);
 	ctx.stroke();
 	ctx.beginPath();
-	ctx.moveTo(e.clientX, e.clientY - 180);
+	ctx.moveTo(e.clientX-8, e.clientY - 173);
 }
 
 function saveCanvasState() {
