@@ -13,8 +13,9 @@ const canvasDiv = document.querySelector(".canvas");
 const storedData = localStorage.getItem("jatekosok");
 const data = storedData ? JSON.parse(storedData) : {};
 
-var cdAudio = document.getElementById("countdown");
-var epicCdAudio = document.getElementById("epicCountdown");
+var cdAudio = document.querySelector("#countdown");
+var epicCdAudio = document.querySelector("#epicCountdown");
+var buzzer = document.querySelector("#buzzer");
 
 let prevGame = true;
 
@@ -166,16 +167,18 @@ function resetTimer() {
 	startCountdown();
 }
 
-document.querySelector(".removeAllP").addEventListener("click", function(){
+document.querySelector(".removeAllP").addEventListener("click", function () {
 	localStorage.clear();
 	location.reload();
-})
+});
 
 document.addEventListener("keydown", function (event) {
 	if (event.code === "Space") {
 		togglePause();
-		cdAudio.pause();
 		epicCdAudio.pause();
+		if (isPaused) {
+			buzzer.play();
+		}
 	}
 });
 
