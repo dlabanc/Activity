@@ -7,6 +7,14 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<audio id="countdown">
+			<source src="countdown.mp3" type="audio/mp3" />
+			A böngésződ nem támogatja a hanglejátszást.
+		</audio>
+		<audio id="epicCountdown">
+			<source src="epicCountdown.mp3" type="audio/mp3" />
+			A böngésződ nem támogatja a hanglejátszást.
+		</audio>
 		<div class="game">
 			<div class="timer"><p>Előkészületek</p></div>
 			<div class="buttons">
@@ -17,13 +25,14 @@
 			<div class="players">
 				<div class="jatekosok"></div>
 				<form class="ujJatekos">
-					<input type="text" name="jatekosNev" id="jatekosNev" placeholder="Új csapat felvétele"/>
-                </form>
+					<input type="text" name="jatekosNev" id="jatekosNev" placeholder="Új csapat felvétele" />
+				</form>
+				<button class="removeAllP">Játékosok törlése</button>
 			</div>
 			<div class="canvas">
 				<canvas id="drawCanvas"></canvas>
 				<div id="undoButton">Visszavonás</div>
-                <div id="clearButton">Törlés</div>
+				<div id="clearButton">Törlés</div>
 				<div id="colorPalette">
 					<div class="colorOption" style="background-color: #000" onclick="changeCursorColor('#000')"></div>
 					<div class="colorOption" style="background-color: #ff0000" onclick="changeCursorColor('#ff0000')"></div>

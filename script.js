@@ -13,6 +13,9 @@ const canvasDiv = document.querySelector(".canvas");
 const storedData = localStorage.getItem("jatekosok");
 const data = storedData ? JSON.parse(storedData) : {};
 
+var cdAudio = document.getElementById("countdown");
+var epicCdAudio = document.getElementById("epicCountdown");
+
 let prevGame = true;
 
 canvasDiv.hidden = true;
@@ -121,9 +124,15 @@ function startCountdown() {
 		if (!isPaused) {
 			displayTime(secondsRemaining);
 			secondsRemaining--;
+			if (secondsRemaining == 33) {
+				cdAudio.play();
+			}
 			if (secondsRemaining == 29) {
 				isPaused = true;
 				document.querySelector(".timer p").style.color = "rgb(185, 0, 0)";
+			}
+			if (secondsRemaining == 2) {
+				epicCdAudio.play();
 			}
 			if (secondsRemaining < -1) {
 				clearInterval(countdown);
@@ -157,9 +166,16 @@ function resetTimer() {
 	startCountdown();
 }
 
+document.querySelector(".removeAllP").addEventListener("click", function(){
+	localStorage.clear();
+	location.reload();
+})
+
 document.addEventListener("keydown", function (event) {
 	if (event.code === "Space") {
 		togglePause();
+		cdAudio.pause();
+		epicCdAudio.pause();
 	}
 });
 
@@ -195,10 +211,10 @@ function draw(e) {
 	ctx.lineCap = "round";
 	ctx.strokeStyle = cursorColor;
 
-	ctx.lineTo(e.clientX -8, e.clientY - 173);
+	ctx.lineTo(e.clientX - 8, e.clientY - 173);
 	ctx.stroke();
 	ctx.beginPath();
-	ctx.moveTo(e.clientX-8, e.clientY - 173);
+	ctx.moveTo(e.clientX - 8, e.clientY - 173);
 }
 
 function saveCanvasState() {
