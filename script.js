@@ -220,6 +220,24 @@ function draw(e) {
 	ctx.moveTo(e.clientX - 8, e.clientY - 173);
 }
 
+function startDrawing2(e) {
+    drawing = true;
+    draw(e.touches[0]); // Pass the first touch event
+}
+
+function draw2(e) {
+    if (!drawing) return;
+
+    ctx.lineWidth = 5;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = cursorColor;
+
+    ctx.lineTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+}
+
 function saveCanvasState() {
 	undoHistory.push(canvas.toDataURL());
 }
@@ -249,9 +267,9 @@ canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mousemove", draw);
 
-canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchstart', startDrawing2);
 canvas.addEventListener('touchend', stopDrawing);
-canvas.addEventListener('touchmove', draw);
+canvas.addEventListener('touchmove', draw2);
     
 
 canvas.addEventListener("contextmenu", event => {
