@@ -221,11 +221,13 @@ function draw(e) {
 }
 
 function startDrawing2(e) {
+	e.preventDefault();
     drawing = true;
     draw(e.touches[0]); // Pass the first touch event
 }
 
 function draw2(e) {
+	e.preventDefault();
     if (!drawing) return;
 
     ctx.lineWidth = 5;
