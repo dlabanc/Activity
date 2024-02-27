@@ -248,6 +248,12 @@ function changeCursorColor(color) {
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mousemove", draw);
+
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchmove', draw);
+    
+
 canvas.addEventListener("contextmenu", event => {
 	event.preventDefault();
 });
